@@ -1,9 +1,9 @@
 import mysql.connector as mysql
-from homework.lessons.lesson15 import creds
+import creds
 
 db = mysql.connect(
     user = creds.user,
-    passwd = creds.password,
+    passwd = creds.passwd,
     host = creds.host,
     port = creds.port,
     database = creds.database,
