@@ -1,13 +1,12 @@
 import mysql.connector as mysql
-
-from lessons.lesson15.database import student_id, insert_query
+from homework.lessons.lesson15 import creds
 
 db = mysql.connect(
-    user='st-onl',
-    passwd='AVNS_tegPDkI5BlB2lW5eASC',
-    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port=25060,
-    database='st-onl'
+    user = creds.user,
+    passwd = creds.password,
+    host = creds.host,
+    port = creds.port,
+    database = creds.database,
 )
 
 cursor = db.cursor(dictionary = True)
