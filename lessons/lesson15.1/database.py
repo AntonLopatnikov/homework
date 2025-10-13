@@ -1,5 +1,6 @@
 import mysql.connector as mysql
 import creds
+
 db = mysql.connect(
     user= creds.user,
     passwd=creds.passwd,
