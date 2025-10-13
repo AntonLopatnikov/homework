@@ -1,11 +1,11 @@
 import mysql.connector as mysql
-
+import creds
 db = mysql.connect(
-    user='st-onl',
-    passwd='AVNS_tegPDkI5BlB2lW5eASC',
-    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port=25060,
-    database='st-onl'
+    user= creds.user,
+    passwd=creds.passwd,
+    host=creds.host,
+    port=creds.port,
+    database=creds.database,
 )
 
 
