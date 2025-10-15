@@ -1,0 +1,5 @@
+mag1:minsk
+sport:moscow
+hleb:brest
+sale:brest
+milk:minsk
