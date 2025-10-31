@@ -8,9 +8,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import json
 
-from lessons.lesson25.lesson_24 import test_same_elements
+
+
 
 
 @pytest.fixture()
