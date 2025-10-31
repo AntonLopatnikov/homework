@@ -1,3 +1,4 @@
+
 from time import sleep
 import pytest
 from selenium.common import NoSuchElementException
@@ -21,7 +22,8 @@ def driver():
 
 def test_new_tab(driver):
     driver.get("https://www.wildberries.ru/")
-    driver.find_element(By.CSS_SELECTOR, '._close_1b9nk_55').click()
+    close_banner = driver.find_element(By.CSS_SELECTOR, '._close_1b9nk_55')
+    close_banner.click()
     driver.find_element(By.CSS_SELECTOR, '#diamondsMenu > div > ul > li.diamondsItem--bKv2p.j-avia').click()
     tabs = driver.window_handles
     driver.switch_to.window(tabs[1])
@@ -58,10 +60,40 @@ def test_check_id(driver):
 
 def test_dropdown(driver):
     driver.get("https://msk.ivanor.ru/")
-    wheels_msk = driver.find_elements(By.CSS_SELECTOR, '.main-nav__link_wheel')
-    alloy_wheels = driver.find_element(By.CSS_SELECTOR, 'body > div.site-wrapp > div.canvas > div > header > div.container > nav > ul > li.main-nav__item.main-nav__item_wheel > ul > li:nth-child(6) > a')
-    ActionChains(driver).move_to_element(wheels_msk[0]).click(alloy_wheels).perform()
+    wheels_msk = driver.find_element(By.CSS_SELECTOR, '.main-nav__link_wheel')
+    alloy_wheels = driver.find_element(By.XPATH, '/html/body/div[2]/div[3]/div/header/div[3]/nav/ul/li[2]/ul/li[6]/a')
+    actions = ActionChains(driver)
+    actions.move_to_element(wheels_msk)
+    actions.click(alloy_wheels)
+    actions.perform()
     assert driver.find_element(By.TAG_NAME, 'h1').text == 'Литые диски'
+
+def test_scroll(driver):
+    driver.get("https://www.wildberries.ru/")
+    driver.find_element(By.CSS_SELECTOR, '._close_1b9nk_55').click()
+    # driver.execute_script('window.scrollTo(0,document.body.scrollHeight)')
+    select_elements = WebDriverWait(driver, 10).until(
+        EC.presence_of_all_elements_located((By.CSS_SELECTOR, '.product-card__wrapper'))
+    )
+    first_element = select_elements[10]
+    driver.execute_script('arguments[0].scrollIntoView();', first_element)
+
+def test_upload(driver):
+    driver.get("https://www.google.com/?hl=ru")
+    icon_photo = driver.find_element(By.CSS_SELECTOR, '.nDcEnd')
+    icon_photo.click()
+    upload_file = driver.find_element(By.CSS_SELECTOR, '.DV7the')
+    upload_file.send_keys(Keys.ENTER)
+    upload_file.send_keys("C:/Users/sh4rkkkkkkk/Pictures/Saved Pictures/фон/Honda S2000 (1920x1080).jpg")
+
+
+
+
+
+
+
+
+
 
 
 
