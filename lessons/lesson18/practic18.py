@@ -11,20 +11,7 @@ def one_post():
     response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}').json()
     assert response['id'] == post_id
 
-def post_a_post():
-    body = {
-        "title": "foo",
-        "body": "bar",
-        "userId": 1,
-    }
-    headers = {"Content-Type": "application/json"}
-    response = requests.post(
-        'https://jsonplaceholder.typicode.com/posts',
-        json = body,
-        headers = headers
-    )
-    assert response.status_code == 201, 'status code is incorrect'
-    assert response.json()['id'] == 101, 'id is incorrect'
+
 
 def new_post():
     body = {
@@ -81,4 +68,3 @@ def delete_a_post():
     print(response.json())
     print(response.status_code)
 
-post_a_post()

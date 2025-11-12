@@ -29,7 +29,6 @@ def test_fetch_response(page: Page):
     expect(response).to_be_ok()
     print(response.url)
     print(response.status)
-    # print(response.json())
 
 
 def test_main_menu(page: Page):

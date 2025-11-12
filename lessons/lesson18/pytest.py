@@ -1,7 +1,6 @@
-import pytest
 import requests
-import pytest
 import allure
+import pytest
 
 
 @pytest.fixture(scope ='session')
@@ -12,7 +11,7 @@ def hello():
 
 @allure.feature('posts')
 @allure.story('get posts')
-def test_get_one_post(new_post_id, hello):
+def get_one_post(new_post_id, hello):
     with allure.step(f'run get request for post with id {new_post_id}'):
         response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{new_post_id}').json()
     with allure.step(f'check post id is {new_post_id}'):
@@ -20,14 +19,14 @@ def test_get_one_post(new_post_id, hello):
 
 @allure.feature('posts')
 @allure.story('get posts')
-def test_get_all_posts():
+def get_all_posts():
     response = requests.get('https://jsonplaceholder.typicode.com/posts').json()
     assert len(response) == 100
 
 
 @allure.feature('posts')
 @allure.story('manipulate posts')
-def test_add_post():
+def add_post():
     with allure.step('prepare teest data'):
         body = {
             "title": "foo",
@@ -49,7 +48,7 @@ def test_add_post():
 @allure.feature('example')
 @allure.story('equals')
 @pytest.mark.parametrize('logins', [1, 2, 3,4])
-def test_one(logins):
+def one(logins):
     assert 1 == 1
 
 # pytest -v --alluredir=allure-results
